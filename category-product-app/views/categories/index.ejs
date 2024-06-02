@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<main>
+    <h1>Categories</h1>
+    <a href="/categories/new" class="button">Add New Category</a>
+    <ul class="list">
+        <% categories.forEach(category => { %>
+            <li class="list-item">
+                <%= category.name %>
+                <a href="/categories/<%= category.id %>/edit" class="button">Edit</a>
+                <form action="/categories/<%= category.id %>?_method=DELETE" method="POST" class="inline-form">
+                    <button type="submit" class="button delete">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</main>
+<%- include('../partials/footer') %>

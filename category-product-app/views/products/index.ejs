@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<main>
+    <h1>Products</h1>
+    <a href="/products/new" class="button">Add New Product</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Category Name</th>
+                <th>Category ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(product => { %>
+                <tr>
+                    <td><%= product.productid %></td>
+                    <td><%= product.productname %></td>
+                    <td><%= product.categoryname %></td>
+                    <td><%= product.categoryid %></td>
+                    <td>
+                        <a href="/products/<%= product.productid %>/edit" class="button">Edit</a>
+                        <form action="/products/<%= product.productid %>?_method=DELETE" method="POST" class="inline-form">
+                            <button type="submit" class="button delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="pagination">
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="?page=<%= i %>" class="button"><%= i %></a>
+        <% } %>
+    </div>
+</main>
+<%- include('../partials/footer') %>
